@@ -1,0 +1,401 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x12ae07130 .scope module, "tfhe_processor_slice_tb" "tfhe_processor_slice_tb" 2 4;
+ .timescale -9 -12;
+L_0x12ae47f20 .functor BUFZ 20, L_0x12ae472a0, C4<00000000000000000000>, C4<00000000000000000000>, C4<00000000000000000000>;
+L_0x12ae47f90 .functor BUFZ 20, L_0x12ae47540, C4<00000000000000000000>, C4<00000000000000000000>, C4<00000000000000000000>;
+L_0x12ae48000 .functor BUFZ 20, L_0x12ae47d20, C4<00000000000000000000>, C4<00000000000000000000>, C4<00000000000000000000>;
+v0x12ae466d0_0 .net "ct1", 19 0, L_0x12ae47f20;  1 drivers
+v0x12ae46790_0 .net "ct1_a", 9 0, L_0x12ae480f0;  1 drivers
+v0x12ae46830_0 .net "ct1_b", 9 0, L_0x12ae48190;  1 drivers
+v0x12ae468d0_0 .net "ct2", 19 0, L_0x12ae47f90;  1 drivers
+v0x12ae46980_0 .net "ct2_a", 9 0, L_0x12ae48230;  1 drivers
+v0x12ae46a70_0 .net "ct2_b", 9 0, L_0x12ae48330;  1 drivers
+v0x12ae46b20_0 .net "ct_sum", 19 0, L_0x12ae48000;  1 drivers
+v0x12ae46bd0_0 .net "ct_sum_a", 9 0, L_0x12ae483f0;  1 drivers
+v0x12ae46c80_0 .net "ct_sum_b", 9 0, L_0x12ae48520;  1 drivers
+v0x12ae46d90_0 .var "op1", 7 0;
+v0x12ae46e30_0 .var "op2", 7 0;
+v0x12ae46f10_0 .var "public_key1", 9 0;
+v0x12ae46fe0_0 .var "public_key2", 9 0;
+v0x12ae470b0_0 .net "res", 7 0, L_0x12ae47e80;  1 drivers
+L_0x12ae480f0 .part L_0x12ae47f20, 10, 10;
+L_0x12ae48190 .part L_0x12ae47f20, 0, 10;
+L_0x12ae48230 .part L_0x12ae47f90, 10, 10;
+L_0x12ae48330 .part L_0x12ae47f90, 0, 10;
+L_0x12ae483f0 .part L_0x12ae48000, 10, 10;
+L_0x12ae48520 .part L_0x12ae48000, 0, 10;
+S_0x12ae072a0 .scope task, "apply_random_keys" "apply_random_keys" 2 33, 2 33 0, S_0x12ae07130;
+ .timescale -9 -12;
+TD_tfhe_processor_slice_tb.apply_random_keys ;
+    %vpi_func 2 35 "$random" 32 {0 0 0};
+    %pushi/vec4 1024, 0, 32;
+    %mod/s;
+    %pad/s 10;
+    %store/vec4 v0x12ae46f10_0, 0, 10;
+    %vpi_func 2 36 "$random" 32 {0 0 0};
+    %pushi/vec4 1024, 0, 32;
+    %mod/s;
+    %pad/s 10;
+    %store/vec4 v0x12ae46fe0_0, 0, 10;
+    %end;
+S_0x12ae16890 .scope module, "uut" "tfhe_processor_slice" 2 11, 3 4 0, S_0x12ae07130;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 8 "byte1";
+    .port_info 1 /INPUT 10 "public_key1";
+    .port_info 2 /INPUT 8 "byte2";
+    .port_info 3 /INPUT 10 "public_key2";
+    .port_info 4 /OUTPUT 8 "res";
+v0x12ae45f30_0 .net "byte1", 7 0, v0x12ae46d90_0;  1 drivers
+v0x12ae45fe0_0 .net "byte2", 7 0, v0x12ae46e30_0;  1 drivers
+v0x12ae46070_0 .net "ct1", 19 0, L_0x12ae472a0;  1 drivers
+v0x12ae46160_0 .net "ct2", 19 0, L_0x12ae47540;  1 drivers
+L_0x120068010 .functor BUFT 1, C4<10000000000>, C4<0>, C4<0>, C4<0>;
+v0x12ae46230_0 .net "ct_modulus", 10 0, L_0x120068010;  1 drivers
+v0x12ae46300_0 .net "ct_sum", 19 0, L_0x12ae47d20;  1 drivers
+L_0x120068058 .functor BUFT 1, C4<100000000>, C4<0>, C4<0>, C4<0>;
+v0x12ae463d0_0 .net "pt_modulus", 8 0, L_0x120068058;  1 drivers
+v0x12ae46460_0 .net "public_key1", 9 0, v0x12ae46f10_0;  1 drivers
+v0x12ae464f0_0 .net "public_key2", 9 0, v0x12ae46fe0_0;  1 drivers
+v0x12ae46600_0 .net "res", 7 0, L_0x12ae47e80;  alias, 1 drivers
+S_0x12ae16a00 .scope module, "ct_addr" "ct_adder" 3 37, 4 3 0, S_0x12ae16890;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 20 "ct1";
+    .port_info 1 /INPUT 20 "ct2";
+    .port_info 2 /OUTPUT 20 "ct_sum";
+v0x12ae2f7a0_0 .net *"_ivl_1", 9 0, L_0x12ae47710;  1 drivers
+v0x12ae43a20_0 .net *"_ivl_10", 9 0, L_0x12ae47be0;  1 drivers
+v0x12ae43ad0_0 .net *"_ivl_3", 9 0, L_0x12ae47850;  1 drivers
+v0x12ae43b90_0 .net *"_ivl_4", 9 0, L_0x12ae47970;  1 drivers
+v0x12ae43c40_0 .net *"_ivl_7", 9 0, L_0x12ae47a70;  1 drivers
+v0x12ae43d30_0 .net *"_ivl_9", 9 0, L_0x12ae47b10;  1 drivers
+v0x12ae43de0_0 .net "ct1", 19 0, L_0x12ae472a0;  alias, 1 drivers
+v0x12ae43e90_0 .net "ct2", 19 0, L_0x12ae47540;  alias, 1 drivers
+v0x12ae43f40_0 .net "ct_sum", 19 0, L_0x12ae47d20;  alias, 1 drivers
+L_0x12ae47710 .part L_0x12ae472a0, 10, 10;
+L_0x12ae47850 .part L_0x12ae47540, 10, 10;
+L_0x12ae47970 .arith/sum 10, L_0x12ae47710, L_0x12ae47850;
+L_0x12ae47a70 .part L_0x12ae472a0, 0, 10;
+L_0x12ae47b10 .part L_0x12ae47540, 0, 10;
+L_0x12ae47be0 .arith/sum 10, L_0x12ae47a70, L_0x12ae47b10;
+L_0x12ae47d20 .concat [ 10 10 0 0], L_0x12ae47be0, L_0x12ae47970;
+S_0x12ae440a0 .scope module, "decryptor" "hdp" 3 43, 5 3 0, S_0x12ae16890;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 20 "ciphertext";
+    .port_info 1 /INPUT 11 "ct_modulus";
+    .port_info 2 /INPUT 9 "pt_modulus";
+    .port_info 3 /OUTPUT 8 "res";
+P_0x12ae44260 .param/l "secret_key" 0 5 17, +C4<00000000000000000000000000000111>;
+v0x12ae44420_0 .net "ciphertext", 19 0, L_0x12ae47d20;  alias, 1 drivers
+v0x12ae444e0_0 .net "ct_modulus", 10 0, L_0x120068010;  alias, 1 drivers
+v0x12ae44570_0 .var "delta_shift", 1 0;
+v0x12ae44600_0 .net "pt_modulus", 8 0, L_0x120068058;  alias, 1 drivers
+v0x12ae44690_0 .net "res", 7 0, L_0x12ae47e80;  alias, 1 drivers
+v0x12ae44760_0 .var "res_i", 19 0;
+E_0x12ae443c0 .event anyedge, v0x12ae43f40_0, v0x12ae444e0_0, v0x12ae44760_0, v0x12ae44570_0;
+L_0x12ae47e80 .part v0x12ae44760_0, 0, 8;
+S_0x12ae44850 .scope module, "hep1" "hep" 3 19, 6 3 0, S_0x12ae16890;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 8 "pixel_byte";
+    .port_info 1 /INPUT 10 "public_key";
+    .port_info 2 /INPUT 11 "ct_modulus";
+    .port_info 3 /INPUT 9 "pt_modulus";
+    .port_info 4 /INPUT 1 "error";
+    .port_info 5 /OUTPUT 20 "ciphertext";
+P_0x12ae44a10 .param/l "secret_key" 0 6 16, +C4<00000000000000000000000000000111>;
+L_0x12ae45aa0 .functor BUFZ 10, v0x12ae46f10_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+v0x12ae44c50_0 .net *"_ivl_10", 9 0, v0x12ae44db0_0;  1 drivers
+v0x12ae44d10_0 .net *"_ivl_5", 9 0, L_0x12ae45aa0;  1 drivers
+v0x12ae44db0_0 .var "b", 9 0;
+v0x12ae44e40_0 .net "ciphertext", 19 0, L_0x12ae472a0;  alias, 1 drivers
+v0x12ae44ed0_0 .net "ct_modulus", 10 0, L_0x120068010;  alias, 1 drivers
+L_0x1200680a0 .functor BUFT 1, C4<100>, C4<0>, C4<0>, C4<0>;
+v0x12ae44fa0_0 .net "delta", 2 0, L_0x1200680a0;  1 drivers
+L_0x1200680e8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x12ae45030_0 .net "error", 0 0, L_0x1200680e8;  1 drivers
+v0x12ae450d0_0 .net "pixel_byte", 7 0, v0x12ae46d90_0;  alias, 1 drivers
+v0x12ae45180_0 .net "pt_modulus", 8 0, L_0x120068058;  alias, 1 drivers
+v0x12ae452c0_0 .net "public_key", 9 0, v0x12ae46f10_0;  alias, 1 drivers
+E_0x12ae44bf0 .event anyedge, v0x12ae452c0_0, v0x12ae44fa0_0, v0x12ae450d0_0, v0x12ae45030_0;
+L_0x12ae472a0 .concat8 [ 10 10 0 0], v0x12ae44db0_0, L_0x12ae45aa0;
+S_0x12ae453b0 .scope module, "hep2" "hep" 3 28, 6 3 0, S_0x12ae16890;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 8 "pixel_byte";
+    .port_info 1 /INPUT 10 "public_key";
+    .port_info 2 /INPUT 11 "ct_modulus";
+    .port_info 3 /INPUT 9 "pt_modulus";
+    .port_info 4 /INPUT 1 "error";
+    .port_info 5 /OUTPUT 20 "ciphertext";
+P_0x12ae45570 .param/l "secret_key" 0 6 16, +C4<00000000000000000000000000000111>;
+L_0x12ae474d0 .functor BUFZ 10, v0x12ae46fe0_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+v0x12ae45790_0 .net *"_ivl_10", 9 0, v0x12ae458f0_0;  1 drivers
+v0x12ae45850_0 .net *"_ivl_5", 9 0, L_0x12ae474d0;  1 drivers
+v0x12ae458f0_0 .var "b", 9 0;
+v0x12ae45980_0 .net "ciphertext", 19 0, L_0x12ae47540;  alias, 1 drivers
+v0x12ae45a10_0 .net "ct_modulus", 10 0, L_0x120068010;  alias, 1 drivers
+L_0x120068130 .functor BUFT 1, C4<100>, C4<0>, C4<0>, C4<0>;
+v0x12ae45b20_0 .net "delta", 2 0, L_0x120068130;  1 drivers
+L_0x120068178 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x12ae45bb0_0 .net "error", 0 0, L_0x120068178;  1 drivers
+v0x12ae45c40_0 .net "pixel_byte", 7 0, v0x12ae46e30_0;  alias, 1 drivers
+v0x12ae45cf0_0 .net "pt_modulus", 8 0, L_0x120068058;  alias, 1 drivers
+v0x12ae45e00_0 .net "public_key", 9 0, v0x12ae46fe0_0;  alias, 1 drivers
+E_0x12ae45720 .event anyedge, v0x12ae45e00_0, v0x12ae45b20_0, v0x12ae45c40_0, v0x12ae45bb0_0;
+L_0x12ae47540 .concat8 [ 10 10 0 0], v0x12ae458f0_0, L_0x12ae474d0;
+    .scope S_0x12ae44850;
+T_1 ;
+    %wait E_0x12ae44bf0;
+    %load/vec4 v0x12ae452c0_0;
+    %pad/u 32;
+    %muli 7, 0, 32;
+    %load/vec4 v0x12ae44fa0_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae450d0_0;
+    %pad/u 32;
+    %mul;
+    %add;
+    %load/vec4 v0x12ae45030_0;
+    %pad/u 32;
+    %add;
+    %pad/u 10;
+    %store/vec4 v0x12ae44db0_0, 0, 10;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x12ae453b0;
+T_2 ;
+    %wait E_0x12ae45720;
+    %load/vec4 v0x12ae45e00_0;
+    %pad/u 32;
+    %muli 7, 0, 32;
+    %load/vec4 v0x12ae45b20_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae45c40_0;
+    %pad/u 32;
+    %mul;
+    %add;
+    %load/vec4 v0x12ae45bb0_0;
+    %pad/u 32;
+    %add;
+    %pad/u 10;
+    %store/vec4 v0x12ae458f0_0, 0, 10;
+    %jmp T_2;
+    .thread T_2, $push;
+    .scope S_0x12ae440a0;
+T_3 ;
+    %pushi/vec4 2, 0, 2;
+    %store/vec4 v0x12ae44570_0, 0, 2;
+    %end;
+    .thread T_3;
+    .scope S_0x12ae440a0;
+T_4 ;
+    %wait E_0x12ae443c0;
+    %load/vec4 v0x12ae44420_0;
+    %parti/s 10, 0, 2;
+    %pad/u 32;
+    %load/vec4 v0x12ae44420_0;
+    %parti/s 10, 10, 5;
+    %pad/u 32;
+    %muli 7, 0, 32;
+    %sub;
+    %load/vec4 v0x12ae444e0_0;
+    %pad/u 32;
+    %mod;
+    %pad/u 20;
+    %store/vec4 v0x12ae44760_0, 0, 20;
+    %load/vec4 v0x12ae44760_0;
+    %ix/getv 4, v0x12ae44570_0;
+    %shiftr 4;
+    %store/vec4 v0x12ae44760_0, 0, 20;
+    %jmp T_4;
+    .thread T_4, $push;
+    .scope S_0x12ae07130;
+T_5 ;
+    %vpi_call 2 42 "$display", "\012========== TFHE Homomorphic Addition Test ==========" {0 0 0};
+    %vpi_call 2 43 "$display", "Time    op1 op2 | ct1(a,b)      | ct2(a,b)      | ct_sum(a,b)   | res Exp" {0 0 0};
+    %vpi_call 2 44 "$display", "======= === === | ============= | ============= | ============= | === ===" {0 0 0};
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 49 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 5, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 3, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 55 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 10, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 20, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 60 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 50, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 75, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 65 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 255, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae46e30_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 256, 0, 32;
+    %mod;
+    %vpi_call 2 71 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u32> {1 0 0};
+    %pushi/vec4 200, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 100, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae46e30_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 256, 0, 32;
+    %mod;
+    %vpi_call 2 76 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u32> {1 0 0};
+    %pushi/vec4 255, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 255, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae46e30_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 256, 0, 32;
+    %mod;
+    %vpi_call 2 81 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u32> {1 0 0};
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 123, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 87 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 99, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 92 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 16, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 32, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 98 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 64, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 128, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 103 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 37, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 89, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %load/vec4 v0x12ae46e30_0;
+    %add;
+    %vpi_call 2 109 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u8> {1 0 0};
+    %pushi/vec4 111, 0, 8;
+    %store/vec4 v0x12ae46d90_0, 0, 8;
+    %pushi/vec4 222, 0, 8;
+    %store/vec4 v0x12ae46e30_0, 0, 8;
+    %fork TD_tfhe_processor_slice_tb.apply_random_keys, S_0x12ae072a0;
+    %join;
+    %delay 10000, 0;
+    %load/vec4 v0x12ae46d90_0;
+    %pad/u 32;
+    %load/vec4 v0x12ae46e30_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 256, 0, 32;
+    %mod;
+    %vpi_call 2 114 "$display", "%7d %3d %3d | (%3d,%3d)     | (%3d,%3d)     | (%3d,%3d)     | %3d %3d", $time, v0x12ae46d90_0, v0x12ae46e30_0, v0x12ae46790_0, v0x12ae46830_0, v0x12ae46980_0, v0x12ae46a70_0, v0x12ae46bd0_0, v0x12ae46c80_0, v0x12ae470b0_0, S<0,vec4,u32> {1 0 0};
+    %delay 10000, 0;
+    %vpi_call 2 119 "$display", "\012========== Summary ==========" {0 0 0};
+    %vpi_call 2 120 "$display", "Ciphertext modulus (q): 1024" {0 0 0};
+    %vpi_call 2 121 "$display", "Plaintext modulus (p): 256" {0 0 0};
+    %vpi_call 2 122 "$display", "Ciphertext format: (a, b) where a=public_key, b=computed value" {0 0 0};
+    %vpi_call 2 123 "$display", "Note: ct_sum_a should equal (ct1_a + ct2_a) mod 1024" {0 0 0};
+    %vpi_call 2 124 "$display", "Note: ct_sum_b should equal (ct1_b + ct2_b) mod 1024" {0 0 0};
+    %vpi_call 2 125 "$display", "Testbench completed\012" {0 0 0};
+    %vpi_call 2 126 "$finish" {0 0 0};
+    %end;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 7;
+    "N/A";
+    "<interactive>";
+    "tfhe_processor_slice_tb.v";
+    "tfhe_processor_slice.v";
+    "ct_adder.v";
+    "hdp.v";
+    "hep.v";
