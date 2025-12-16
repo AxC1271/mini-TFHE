@@ -1,0 +1,83 @@
+# Synopsys Design Compiler Makefile
+# Case Western Reserve University
+
+# SSH Configuration
+SSH_HOST = cse-d3kgsk74.case.edu
+SSH_USER = Andrewfall2025
+REMOTE_DIR = ~/synopsys_work
+
+# Local files to upload
+VERILOG_FILES = image_controller.v lfsr.v tfhe_processor_slice.v hep.v hdp.v ct_adder.v
+TCL_SCRIPT = synthesis.tcl
+CONSTRAINT_FILE = constraints.sdc
+
+# Design parameters
+TOP_MODULE = image_controller
+LIBRARY = your_library_name
+
+.PHONY: all connect upload synthesize download clean help
+
+all: help
+
+# Connect to server (interactive)
+connect:
+	@echo "Connecting to $(SSH_HOST)..."
+	@ssh $(SSH_USER)@$(SSH_HOST)
+
+# Upload files to server
+upload:
+	@echo "Creating remote directory..."
+	@ssh $(SSH_USER)@$(SSH_HOST) "mkdir -p $(REMOTE_DIR)"
+	@echo "Uploading Verilog files..."
+	@scp $(VERILOG_FILES) $(SSH_USER)@$(SSH_HOST):$(REMOTE_DIR)/
+	@echo "Uploading TCL script..."
+	@scp $(TCL_SCRIPT) $(SSH_USER)@$(SSH_HOST):$(REMOTE_DIR)/
+	@echo "Upload complete!"
+
+# Run synthesis on server
+synthesize: upload
+	@echo "Running Design Compiler synthesis..."
+	@ssh $(SSH_USER)@$(SSH_HOST) "cd $(REMOTE_DIR) && dc_shell -f $(TCL_SCRIPT)"
+
+# Download synthesis results
+download:
+	@echo "Downloading synthesis reports..."
+	@mkdir -p reports
+	@scp $(SSH_USER)@$(SSH_HOST):$(REMOTE_DIR)/reports/* reports/
+	@echo "Results downloaded to ./reports/"
+
+# Full synthesis flow
+full: upload synthesize download
+	@echo "Synthesis complete! Check ./reports/ for results"
+
+# Clean remote directory
+clean-remote:
+	@echo "Cleaning remote directory..."
+	@ssh $(SSH_USER)@$(SSH_HOST) "rm -rf $(REMOTE_DIR)/*"
+
+# Clean local reports
+clean-local:
+	@rm -rf reports/*
+
+# Clean everything
+clean: clean-local clean-remote
+	@echo "Cleaned!"
+
+# Display help
+help:
+	@echo "Synopsys Design Compiler Makefile"
+	@echo "=================================="
+	@echo ""
+	@echo "Available targets:"
+	@echo "  make connect      - SSH into the server"
+	@echo "  make upload       - Upload Verilog files to server"
+	@echo "  make synthesize   - Run synthesis on server"
+	@echo "  make download     - Download synthesis reports"
+	@echo "  make full         - Complete synthesis flow (upload + synthesize + download)"
+	@echo "  make clean        - Clean local and remote files"
+	@echo "  make help         - Show this help message"
+	@echo ""
+	@echo "Configuration:"
+	@echo "  Server: $(SSH_USER)@$(SSH_HOST)"
+	@echo "  Remote Directory: $(REMOTE_DIR)"
+	@echo "  Top Module: $(TOP_MODULE)"
