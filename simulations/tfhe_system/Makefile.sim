@@ -1,0 +1,26 @@
+# Name of the output executable
+OUT = image_processor.vvp
+
+# List all Verilog source files here
+SRCS = image_controller_tb.v \
+       image_controller.v \
+       lfsr.v \
+       tfhe_processor_slice.v \
+       hep.v \
+       hdp.v \
+       ct_adder.v
+
+# Default target
+all: run
+
+# Compile
+$(OUT): $(SRCS)
+	iverilog -o $(OUT) $(SRCS)
+
+# Run simulation
+run: $(OUT)
+	vvp $(OUT)
+
+# Remove generated files
+clean:
+	rm -f $(OUT)
