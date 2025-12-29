@@ -4,6 +4,10 @@ This was my senior engineering design project for the **Fall 2025** semester at 
 We explore homomorphic encryption algorithms, how to implement them in hardware, and how we can address computational
 bottlenecks of such homomorphic encryption algorithms.
 
+<p align="center">
+  <img src="./ResearchPoster.png" />
+</p>
+
 ## Preface 
 
 ---
