@@ -104,7 +104,7 @@ This creates the following grayscale image, which then can be represented using 
 ## Verilog Implementation
 
 Given how I've explained the encryption and decryption modules,
-we can design those using Verilog:
+we can design those using Verilog. Comments are added for the reader's convenience.
 
 ```Verilog
 `timescale 1ns / 1ps
@@ -173,7 +173,27 @@ module hdp (
 endmodule
 ```
 
+For our image processing applications, we need to make a 20-bit ripple carry adder to handle these ciphertexts:
+
+```Verilog
+`timescale 1ns / 1ps
+
+module ct_adder (
+    input [19:0] ct1,
+    input [19:0] ct2,
+    output [19:0] ct_sum
+    );
+    
+    // adding ciphertexts as shown
+    // there's no need to carry since
+    // a and b are always bounded by q = 256
+    assign ct_sum = {ct1[19:10] + ct2[19:10], ct1[9:0] + ct2[9:0]};
+endmodule
+```
+
 ---
+
+## Testbenching
 
 ## Results
 
