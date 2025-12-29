@@ -191,11 +191,19 @@ module ct_adder (
 endmodule
 ```
 
+Integrating all of these, you get the TFHE processor slice, which works as an adder but encrypts the intermediary values. The testbench and slice modules can be found in the root folder.
+
 ---
 
-## Testbenching
-
 ## Results
+
+<p align="center">
+  <img 
+  src="./images/HETestbench.png" 
+  />
+</p>
+
+You can see that the results are consistent, and the ciphertexts of each operand are exposed, showing that addition is preserved. 
 
 ---
 
